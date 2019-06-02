@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,30 +59,7 @@ public class RateServiceImpl implements RateService{
         return repository.findAllByPrice(price);
     }
 
-    @Override
-    public List<Rate> findAllByStartDate(LocalDate startDate) {
-        return repository.findAllByStartDate(startDate);
-    }
 
-    @Override
-    public List<Rate> findAllByEndDate(LocalDate endDate) {
-        return repository.findAllByEndDate(endDate);
-    }
-
-    @Override
-    public List<Rate> findAllByStartDateBetween(LocalDate startDate, LocalDate endDate) {
-        return repository.findAllByStartDateBetween(startDate, endDate);
-    }
-
-    @Override
-    public List<Rate> findAllByEndDateBetween(LocalDate startDate, LocalDate endDate) {
-        return repository.findAllByEndDateBetween(startDate, endDate);
-    }
-
-    @Override
-    public List<Rate> findAllByStartDateLessThanEqual(LocalDate startDate) {
-        return repository.findAllByStartDateLessThanEqual(startDate);
-    }
 
     @Override
     public List<Rate> findAllByCars(Integer id) {
@@ -93,8 +69,4 @@ public class RateServiceImpl implements RateService{
             return new ArrayList<>();
     }
 
-    @Override
-    public Optional<Rate> findOneByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDate startDate, LocalDate endDate) {
-        return repository.findOneByStartDateLessThanEqualAndEndDateGreaterThanEqual(startDate, endDate);
-    }
 }

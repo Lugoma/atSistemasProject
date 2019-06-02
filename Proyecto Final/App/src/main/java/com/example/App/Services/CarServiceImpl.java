@@ -91,4 +91,14 @@ public class CarServiceImpl implements CarService{
         else
             return new ArrayList<>();
     }
+
+    @Override
+    public Optional<Car> findMostProfitableCarInBetweenDate(LocalDate startDate, LocalDate endDate) {
+        List<Car> list = repository.findMostProfitableCarInBetweenDate(startDate, endDate);
+
+        if (list.isEmpty())
+            return Optional.empty();
+
+        return Optional.ofNullable(list.get(0));
+    }
 }

@@ -19,6 +19,7 @@ public class ClientServiceImpl implements ClientService{
     {
         if(!repository.findById(client.getIdClient()).isPresent())
             return Optional.ofNullable(repository.save(client));
+
         return Optional.empty();
     }
 

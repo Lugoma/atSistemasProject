@@ -3,35 +3,56 @@ package com.example.App.Services;
 import com.example.App.model.Rate;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public interface RateService {
 
+    /**
+     * Create a new rate
+     * @param rate
+     * @return
+     */
     Optional<Rate> create(Rate rate);
 
+    /**
+     * Modify a rate
+     * @param rate
+     * @return
+     */
     ResponseEntity<Rate> update(Rate rate);
 
+    /**
+     * Delete a rate
+     * @param rate
+     * @return
+     */
     ResponseEntity<Rate> delete(Rate rate);
 
+    /**
+     * Find a rate by id
+     * @param id
+     * @return
+     */
     Optional<Rate> findById(Integer id);
 
+    /**
+     * Find all rates
+     * @return
+     */
     List<Rate> findAll();
 
-    List<Rate> findAllByStartDate(LocalDate startDate);
-
-    List<Rate> findAllByEndDate(LocalDate endDate);
-
-    List<Rate> findAllByStartDateBetween(LocalDate startDate, LocalDate endDate);
-
-    List<Rate> findAllByEndDateBetween(LocalDate startDate, LocalDate endDate);
-
+    /**
+     * Find all rates by price
+     * @param price
+     * @return
+     */
     List<Rate> findAllByPrice(Double price);
 
-    List<Rate> findAllByStartDateLessThanEqual(LocalDate startDate);
-
+    /**
+     * Find all rates by car Id
+     * @param id
+     * @return
+     */
     List<Rate> findAllByCars(Integer id);
-
-    Optional<Rate> findOneByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDate startDate, LocalDate endDate);
 }

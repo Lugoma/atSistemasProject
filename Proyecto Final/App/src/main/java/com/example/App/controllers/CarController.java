@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +76,24 @@ public class CarController {
     {
         if (Optional.ofNullable(idCar).isPresent() && Optional.ofNullable(idRate).isPresent())
             return carRateService.associate(idCar, idRate);
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/mostProfitable")
+    public ResponseEntity<CarDto> mostProfiteableInBetweenDates(@RequestParam(value = "startDate") String startDate,
+                                                                @RequestParam(value = "endDate") String endDate)
+    {
+        if(Optional.ofNullable(startDate).isPresent() && Optional.ofNullable(endDate).isPresent())
+        {
+            LocalDate initDate = dateMapper.map(startDate);
+            LocalDate finalDate = dateMapper.map(endDate);
+
+            return service.findMostProfitableCarInBetweenDate(initDate, finalDate)
+                    .flatMap(mapper::mapDaoToDto)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        }
+
         return ResponseEntity.badRequest().build();
     }
 

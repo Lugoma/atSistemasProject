@@ -24,7 +24,7 @@ public class CarRateServiceImpl implements CarRateService{
         if(car.isPresent() && rate.isPresent())
         {
             // No es necesario hacerlo con rate tambien ya que la base de datos lo asocia automaticamente
-            if(car.get().getRates().contains(rate.get())) {
+            if(!car.get().getRates().contains(rate.get())) {
                 car.get().getRates().add(rate.get());
 
                 carService.update(car.get());
